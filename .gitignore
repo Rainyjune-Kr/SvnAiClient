@@ -1,0 +1,23 @@
+# Visual Studio
+.vs/
+*.user
+*.suo
+*.DotSettings.user
+
+# Build output
+[Bb]in/
+[Oo]bj/
+[Dd]ebug/
+[Rr]elease/
+*.pdb
+
+# NuGet packages (restored via packages.config)
+packages/
+
+# Runtime / local files
+logs/
+*.log
+settings.json
+
+# Archives
+*.zip

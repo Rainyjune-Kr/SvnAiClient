@@ -1,0 +1,391 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
+    <ProjectGuid>{A1B2C3D4-E5F6-7890-ABCD-EF1234567890}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>SvnAiClient</RootNamespace>
+    <AssemblyName>SvnAiClient</AssemblyName>
+    <ApplicationManifest>app.manifest</ApplicationManifest>
+    <ApplicationIcon>Resources\EzSvn.ico</ApplicationIcon>
+    <!-- .NET Framework 4.6.1 타겟 -->
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <!-- Debug | x86 빌드 구성 -->
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <LangVersion>6</LangVersion>
+  </PropertyGroup>
+  <!-- Release | x86 빌드 구성 -->
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <LangVersion>6</LangVersion>
+  </PropertyGroup>
+  <!-- 시스템 참조 -->
+  <ItemGroup>
+    <Reference Include="DevExpress.RichEdit.v16.2.Core, Version=16.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraRichEdit.v16.2.Extensions, Version=16.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <!-- NLog -->
+    <Reference Include="NLog">
+      <HintPath>..\packages\NLog.4.7.15\lib\net45\NLog.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <!-- SharpSvn -->
+    <Reference Include="SharpSvn">
+      <HintPath>..\packages\SharpSvn.1.14005.390\lib\net46\SharpSvn.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <!-- Newtonsoft.Json -->
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\packages\Newtonsoft.Json.12.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <!-- ScintillaNET -->
+    <Reference Include="ScintillaNET">
+      <HintPath>..\packages\jacobslusser.ScintillaNET.3.6.3\lib\net40\ScintillaNET.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.IO.Compression" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="Microsoft.CSharp" />
+  </ItemGroup>
+  <!-- NuGet 패키지 참조 (packages.config 기반) -->
+  <ItemGroup>
+    <!-- NLog -->
+    <Reference Include="DevExpress.Data.v16.2">
+      <HintPath>C:\Program Files (x86)\DevExpress 16.2\Components\Bin\Framework\DevExpress.Data.v16.2.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.Utils.v16.2">
+      <HintPath>C:\Program Files (x86)\DevExpress 16.2\Components\Bin\Framework\DevExpress.Utils.v16.2.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.XtraEditors.v16.2">
+      <HintPath>C:\Program Files (x86)\DevExpress 16.2\Components\Bin\Framework\DevExpress.XtraEditors.v16.2.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.XtraGrid.v16.2">
+      <HintPath>C:\Program Files (x86)\DevExpress 16.2\Components\Bin\Framework\DevExpress.XtraGrid.v16.2.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.XtraTreeList.v16.2">
+      <HintPath>C:\Program Files (x86)\DevExpress 16.2\Components\Bin\Framework\DevExpress.XtraTreeList.v16.2.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.XtraBars.v16.2">
+      <HintPath>C:\Program Files (x86)\DevExpress 16.2\Components\Bin\Framework\DevExpress.XtraBars.v16.2.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.XtraLayout.v16.2">
+      <HintPath>C:\Program Files (x86)\DevExpress 16.2\Components\Bin\Framework\DevExpress.XtraLayout.v16.2.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.XtraRichEdit.v16.2">
+      <HintPath>C:\Program Files (x86)\DevExpress 16.2\Components\Bin\Framework\DevExpress.XtraRichEdit.v16.2.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <!-- 소스 파일 -->
+  <ItemGroup>
+    <!-- 진입점 -->
+    <Compile Include="Views\AddWorkingCopy\AddWorkingCopyInterface.cs" />
+    <Compile Include="Views\AddWorkingCopy\AddWorkingCopyPresenter.cs" />
+    <Compile Include="Views\AddWorkingCopy\AddWorkingCopyView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\AddWorkingCopy\AddWorkingCopyView.Designer.cs">
+      <DependentUpon>AddWorkingCopyView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\AiReviewHistory\AiReviewHistoryInterface.cs" />
+    <Compile Include="Views\AiReviewHistory\AiReviewHistoryPresenter.cs" />
+    <Compile Include="Views\AiReviewHistory\AiReviewHistoryView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\AiReviewHistory\AiReviewHistoryView.Designer.cs">
+      <DependentUpon>AiReviewHistoryView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <!-- Properties -->
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <!-- Models -->
+    <Compile Include="Models\AiModelCatalog.cs" />
+    <Compile Include="Models\AiModelPreset.cs" />
+    <Compile Include="Models\AiProviderSettings.cs" />
+    <Compile Include="Models\AiReviewBatch.cs" />
+    <Compile Include="Models\AiReviewFailureKind.cs" />
+    <Compile Include="Models\AiReviewFile.cs" />
+    <Compile Include="Models\AiReviewHistoryBatch.cs" />
+    <Compile Include="Models\AiReviewHistoryEntry.cs" />
+    <Compile Include="Models\AiReviewHistoryIssue.cs" />
+    <Compile Include="Models\AiReviewIssue.cs" />
+    <Compile Include="Models\AiReviewResult.cs" />
+    <Compile Include="Models\AiReviewStatus.cs" />
+    <Compile Include="Models\AppSettings.cs" />
+    <Compile Include="Models\MainViewLayout.cs" />
+    <Compile Include="Models\ClaudeSettings.cs" />
+    <Compile Include="Models\GeminiSettings.cs" />
+    <Compile Include="Models\IssueSeverity.cs" />
+    <Compile Include="Models\LocalLlmSettings.cs" />
+    <Compile Include="Models\OpenAiSettings.cs" />
+    <Compile Include="Models\SvnChangedPath.cs" />
+    <Compile Include="Models\SvnFileStatus.cs" />
+    <Compile Include="Models\SvnLogEntry.cs" />
+    <Compile Include="Models\SvnSettings.cs" />
+    <Compile Include="Models\SvnStatusKind.cs" />
+    <Compile Include="Models\WorkingCopyEntry.cs" />
+    <!-- Core - AI -->
+    <Compile Include="Core\AI\AiReviewExecutionResult.cs" />
+    <Compile Include="Core\AI\AiReviewHistoryRecorder.cs" />
+    <Compile Include="Core\AI\AiHttpTransport.cs" />
+    <Compile Include="Core\AI\AiProviderFactory.cs" />
+    <Compile Include="Core\AI\AiReviewHistoryMapper.cs" />
+    <Compile Include="Core\AI\AiReviewHistoryService.cs" />
+    <Compile Include="Core\AI\AiReviewService.cs" />
+    <Compile Include="Core\AI\IAiProvider.cs" />
+    <Compile Include="Core\AI\PromptBuilder.cs" />
+    <Compile Include="Core\AI\Providers\ClaudeAiProvider.cs" />
+    <Compile Include="Core\AI\Providers\GeminiAiProvider.cs" />
+    <Compile Include="Core\AI\Providers\LocalLlmProvider.cs" />
+    <Compile Include="Core\AI\Providers\OpenAiProvider.cs" />
+    <Compile Include="Core\AI\ReviewResponseParser.cs" />
+    <Compile Include="Core\AI\TokenUsageParser.cs" />
+    <!-- Core - SVN -->
+    <Compile Include="Core\Svn\DiffLine.cs" />
+    <Compile Include="Core\Svn\DiffLineType.cs" />
+    <Compile Include="Core\Svn\DiffParser.cs" />
+    <Compile Include="Core\Svn\SvnClientFactory.cs" />
+    <Compile Include="Core\Svn\SvnDiffContext.cs" />
+    <Compile Include="Core\Svn\SvnSnapshotService.cs" />
+    <Compile Include="Models\SvnFileSnapshot.cs" />
+    <Compile Include="Core\Svn\SvnDiffService.cs" />
+    <Compile Include="Core\Svn\SvnHistoryService.cs" />
+    <Compile Include="Core\Svn\SvnService.cs" />
+    <Compile Include="Core\Svn\SvnStatusService.cs" />
+    <Compile Include="Core\Svn\SvnWorkingCopyService.cs" />
+    <!-- Core - Settings -->
+    <Compile Include="Core\Settings\SettingsService.cs" />
+    <Compile Include="Core\Settings\MainViewLayoutService.cs" />
+    <!-- Forms -->
+    <Compile Include="Views\Main\MainInterface.cs" />
+    <Compile Include="Views\Main\MainPresenter.cs" />
+    <Compile Include="Views\Main\MainWorkspaceState.cs" />
+    <Compile Include="Views\Main\MainCommitRequest.cs" />
+    <Compile Include="Views\Main\MainView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\Main\MainView.Designer.cs">
+      <DependentUpon>MainView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Commit\CommitInterface.cs" />
+    <Compile Include="Views\Commit\CommitPresenter.cs" />
+    <Compile Include="Views\Commit\CommitReviewSnapshot.cs" />
+    <Compile Include="Views\Commit\CommitView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\Commit\CommitView.Designer.cs">
+      <DependentUpon>CommitView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\DiffViewer\DiffViewerInterface.cs" />
+    <Compile Include="Views\DiffViewer\DiffViewerPresenter.cs" />
+    <Compile Include="Views\DiffViewer\DiffViewerView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\DiffViewer\DiffViewerView.Designer.cs">
+      <DependentUpon>DiffViewerView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\LogViewer\LogViewerInterface.cs" />
+    <Compile Include="Views\LogViewer\LogViewerPresenter.cs" />
+    <Compile Include="Views\LogViewer\LogViewerView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\LogViewer\LogViewerView.Designer.cs">
+      <DependentUpon>LogViewerView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Settings\SettingsInterface.cs" />
+    <Compile Include="Views\Settings\SettingsPresenter.cs" />
+    <Compile Include="Views\Settings\SettingsViewData.cs" />
+    <Compile Include="Views\Settings\SettingsWorkingCopyItem.cs" />
+    <Compile Include="Views\Settings\SettingsView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\Settings\SettingsView.Designer.cs">
+      <DependentUpon>SettingsView.cs</DependentUpon>
+    </Compile>
+    <!-- Controls -->
+    <Compile Include="Controls\DiffDisplayBuilder.cs" />
+    <Compile Include="Controls\DiffDisplayData.cs" />
+    <Compile Include="Controls\DiffDisplayRow.cs" />
+    <Compile Include="Controls\DiffDisplayMarker.cs" />
+    <Compile Include="Controls\DiffScintilla.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controls\DiffViewerControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\DiffViewerControl.Designer.cs">
+      <DependentUpon>DiffViewerControl.cs</DependentUpon>
+    </Compile>
+    <!-- Helpers -->
+    <Compile Include="Helpers\ApplicationFonts.cs" />
+    <EmbeddedResource Include="Fonts\Suit\SUIT-Regular.ttf">
+      <LogicalName>SvnAiClient.Theme.SUIT-Regular.ttf</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Fonts\Suit\SUIT-Bold.ttf">
+      <LogicalName>SvnAiClient.Theme.SUIT-Bold.ttf</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Fonts\D2Coding\D2Coding-Ver1.4.0-20261003.ttf">
+      <LogicalName>SvnAiClient.Theme.D2Coding.ttf</LogicalName>
+    </EmbeddedResource>
+    <Compile Include="Helpers\ViewTheme.cs" />
+    <Compile Include="Views\Common\ThemedView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Helpers\WorkingCopyPath.cs" />
+    <Compile Include="Helpers\WorkingCopyDisplayFilter.cs" />
+    <Compile Include="Helpers\IconHelper.cs" />
+    <Compile Include="Helpers\DpapiHelper.cs" />
+  </ItemGroup>
+  <!-- 리소스 파일 -->
+  <ItemGroup>
+    <EmbeddedResource Include="Controls\DiffViewerControl.resx">
+      <DependentUpon>DiffViewerControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\AiReviewHistory\AiReviewHistoryView.resx">
+      <DependentUpon>AiReviewHistoryView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Commit\CommitView.resx">
+      <DependentUpon>CommitView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\LogViewer\LogViewerView.resx">
+      <DependentUpon>LogViewerView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Main\MainView.resx">
+      <DependentUpon>MainView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Settings\SettingsView.resx">
+      <DependentUpon>SettingsView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\licenses.licx" />
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Content Include="Fonts\Pretendard\Pretendard-Black.otf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Fonts\Pretendard\Pretendard-Bold.otf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Fonts\Pretendard\Pretendard-ExtraBold.otf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Fonts\Pretendard\Pretendard-ExtraLight.otf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Fonts\Pretendard\Pretendard-Light.otf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Fonts\Pretendard\Pretendard-Medium.otf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Fonts\Pretendard\Pretendard-Regular.otf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Fonts\Pretendard\Pretendard-SemiBold.otf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Fonts\Pretendard\Pretendard-Thin.otf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Resource Include="Fonts\Suit\SUIT-Bold.ttf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Fonts\Suit\SUIT-ExtraBold.ttf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Fonts\Suit\SUIT-ExtraLight.ttf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Fonts\Suit\SUIT-Heavy.ttf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Fonts\Suit\SUIT-Light.ttf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Fonts\Suit\SUIT-Medium.ttf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Fonts\Suit\SUIT-Regular.ttf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Fonts\Suit\SUIT-SemiBold.ttf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Fonts\Suit\SUIT-Thin.ttf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Fonts\D2Coding\D2Coding-Ver1.4.0-20261003.ttc">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Content Include="Fonts\D2Coding\D2Coding-Ver1.4.0-20261003.ttf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Fonts\D2Coding\D2CodingBold-Ver1.4.0-20261003.ttf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <!-- App.config -->
+  <ItemGroup>
+    <None Include="app.manifest" />
+    <None Include="App.config" />
+    <None Include="packages.config" />
+    <None Include="NLog.config">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\EzSvn.ico" />
+    <None Include="Resources\EzSvn.svg" />
+    <None Include="Resources\EzSvn.png" />
+  </ItemGroup>
+  <!-- NuGet targets import -->
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Import Project="..\packages\NLog.4.7.15\build\NLog.targets" Condition="Exists('..\packages\NLog.4.7.15\build\NLog.targets')" />
+</Project>
